@@ -4,8 +4,8 @@
   "description": "study project",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel static\\pages\\index.html",
-    "build": "parcel build static\\pages\\index.html --no-source-maps --no-cache --public-url ./"
+    "dev": "parcel index.html",
+    "build": "parcel build index.html --no-source-maps --no-cache --public-url ./"
   },
   "repository": {
     "type": "git",
