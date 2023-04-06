@@ -1,0 +1,141 @@
+.chat-list {
+    width: 25vw;
+    background: rgba(60, 139, 143, 0.36);
+    height: 100vh;
+}
+
+#root {
+    display: flex;
+}
+
+.message-container {
+    width: 75vw;
+    height: 100vh;
+}
+
+.user-block {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.user-search-field {
+    background: #FFFFFF;
+    border-radius: 5px;
+    border: none;
+    height: 20px;
+    margin: 0px 5px;
+    width: 80%;
+    font-size: 10px;
+    font-weight: 300;
+    padding: 0px 5px;
+}
+
+.contact-user-info {
+    display: flex;
+    align-items: center;
+}
+
+@mixin icon {
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    padding: 3px;
+}
+
+.icon-transparent {
+    @include icon;
+    background: transparent;
+    
+    &:hover,
+    &:focus {
+        background: rgba(0, 0, 0, 0.1);
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+.icon-solid {
+    @include icon;
+    background: #3C8B8F;
+}
+
+.button-add {
+    position: absolute;
+    bottom: 20px;
+    left: 20vw;
+    z-index: 1000;
+}
+
+.icon-trash {
+    background-image: url(../../../static/icons/trash-alt.svg);
+    width: 20px;
+    height: 20px;
+}
+
+.icon-edit {
+    background-image: url(../../../static/icons/pen.svg);
+    width: 20px;
+    height: 20px;
+}
+
+.icon-add {
+    background-image: url(../../../static/icons/plus.svg);
+    width: 20px;
+    height: 20px;
+}
+
+.contact-user-message-info {
+    max-width: 75%;
+}
+
+.contact-user-settings {
+    margin-left: auto;
+}
+
+.contact-user-message {
+    background: rgba(254, 254, 254, 0.7);
+    border-radius: 5px;
+    font-size: 8px;
+    max-width: 50%;
+    line-height: 12px;
+    width: fit-content;
+    padding: 5px;
+    margin: 10px;
+}
+
+.current-user-message {
+    max-width: 50%;
+    width: fit-content;
+    background: rgba(255, 233, 212, 0.7);
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: auto;
+    margin: 10px 10px 10px auto;
+    font-size: 8px;
+    line-height: 12px;
+}
+
+.message-user-time {
+    position: relative;
+    top: 0.375rem;
+    bottom: auto !important;
+    float: right;
+    line-height: 1.35;
+    height: calc(var(--message-meta-height, 1rem));
+    margin-left: 0.4375rem;
+    margin-right: -0.1rem;
+}
+
+.input-message-field {
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+    width: 60vw; 
+    // input {
+    //     background: url(../../../static/icons/trash-alt.svg) no-repeat scroll 7px 7px;
+    //     padding-left:30px;
+    // }
+}

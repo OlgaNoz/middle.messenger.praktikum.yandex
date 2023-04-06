@@ -1,0 +1,16 @@
+<div class="content-container-center">
+    <div class="chat-authorization-form">
+        <div class="authorization-form-name">
+            {{formName}}
+        </div>
+        <form action="URL">
+            <ul>
+                {{#each loginInputComponents}}
+                    {{{this}}}
+                {{/each}}
+            </ul>
+            {{{submitButton}}}
+        </form>
+        <a href="#" class="form-back-link">{{linkName}}</a>
+    </div>
+</div>

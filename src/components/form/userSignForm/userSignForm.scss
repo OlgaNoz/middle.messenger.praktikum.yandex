@@ -1,0 +1,31 @@
+.chat-authorization-form {
+    background: rgba(254, 254, 254, 0.4);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 15px 15px 15px;
+
+    ul {
+        padding: 0;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.authorization-form-name {
+    font-size: 15px;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.form-back-link {
+    margin-top: 10px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: 400;
+}

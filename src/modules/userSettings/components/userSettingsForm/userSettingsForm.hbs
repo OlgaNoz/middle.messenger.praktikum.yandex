@@ -1,0 +1,26 @@
+<div class="content-container-center">
+    <div class="user-settings-form">
+        <div class="user-settings-form-name">
+            {{formName}}
+        </div>
+        <div class="short-user-info"> 
+            <button class="user-settings-button"></button>
+            <div>
+                <label class="settings-chat-name">Имя в чате</label>
+                <input type="text" class="form-input"/>
+            </div>
+        </div>
+        <form action="URL">
+            <ul>
+                {{#each loginInputComponents}}
+                    {{{this}}}
+                {{/each}}
+            </ul> 
+            <div class="action-button-block">
+                <button type="submit" class="action-button submit-button">Применить настройки</button>
+                <button type="button" class="action-button cancel-button">Отменить</button>
+            </div>
+
+        </form>
+    </div>
+</div>
