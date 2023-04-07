@@ -3,7 +3,7 @@ import messagePreview from "./components/messagePreview/messagePreview";
 import style from "./chat.scss";
 
 const chat = () => {
-    let message = messagePreview();
+    const message = messagePreview();
     const context = {
         currentUserName: "UN",
         contactUserName: "Л",
