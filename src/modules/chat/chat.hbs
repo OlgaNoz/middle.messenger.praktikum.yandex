@@ -1,0 +1,49 @@
+<div class="chat-list">
+    <div class="user-block">
+        <button class="user-settings-button current-user">
+            {{currentUserName}}
+        </button>
+        <input type="text" class="user-search-field" placeholder="Поиск" value="{{searchText}}"/>
+    </div>
+    <div>
+        {{{message}}}
+    </div>
+    <button class="icon-solid button-add">
+        <div class="icon-add"></div>
+    </button>
+</div>
+<div class="message-container">
+    <div class="user-block">
+        <div class="contact-user-info">
+            <button class="user-settings-button contact-user">
+                {{contactUserName}}
+            </button>
+            <span class="contact-user-name">{{contactUserChatName}}</span>
+        </div>
+        <div class="contact-user-settings">
+            <button class="icon-transparent">
+                <div class="icon-edit"></div>
+            </button>
+            <button class="icon-transparent">
+                <div class="icon-trash"></div>
+            </button>
+        </div>
+        <div>
+        </div>
+    </div>
+    <div class="message">
+        <div class="message-container-field">
+            <div class="contact-user-message">
+                {{contactUserChatMessage}}
+                <span class="message-user-time">{{contactUserChatTime}}</span>
+            </div>
+            <div class="current-user-message">
+                {{contactUserChatMessage}}
+                <span class="message-user-time">{{contactUserChatTime}}</span>
+            </div>
+        </div>
+        <div class="input-message-field">
+            <input type="text" class="user-search-field" name="message" placeholder="Введите сообещение..."/>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+.contact-user-chat {
+    background: rgba(254, 254, 254, 0.7);
+    border-radius: 10px;
+    margin: 10px 7px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        background: rgba(254, 254, 254);
+    }
+}
+
+.user-settings-button {
+    border: none;
+    font-weight: 300;
+    background: #3C8B8F;
+    text-align: center;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    margin: 0px 5px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+
+    &:hover {
+        background: no-repeat center/50% url('../../../../../static/icons/pen.svg');
+    }
+    
+    &.user-list {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+.contact-user-chat-name {
+    font-size: 12px;
+    line-height: 15px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.contact-user-chat-time {
+    font-size: 10px;
+    line-height: 15px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.contact-user-message-preview {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.contact-user-unread-message-count {
+    font-size: 8px;
+    line-height: 15px;
+    color: rgba(0, 0, 0, 0.85);
+    text-align: center;
+    background: rgb(255, 233, 212, 0.7);
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    margin-left: auto;
+}

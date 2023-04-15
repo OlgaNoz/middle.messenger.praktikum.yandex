@@ -1,0 +1,92 @@
+.user-settings-form {
+    background: rgba(254, 254, 254, 0.4);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 15px 15px 15px;
+
+    ul {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
+        button {
+            line-height: 20px;
+        }
+        .cancel-button {
+            background: rgba(0, 0, 0, 0.2);
+            margin-left: 5px;
+        }
+    }
+
+    li {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
+    input {
+        direction: rtl;
+        color: #000c;
+        height: 22px;
+        background: rgba(254, 254, 254, 0.7);
+        font-weight: 400;
+        font-size: 9px;
+    }
+}
+
+.user-settings-form-name {
+    font-size: 15px;
+    line-height: 25px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.short-user-info {
+    display: flex;
+    align-items: center;
+
+    .user-settings-button {
+        margin: 0px 5px 0px 0px;
+    }
+
+    input {
+        margin: 0;
+    }
+}
+
+.settings-chat-name {
+    display: block;
+    font-size: 8px;
+    margin: 2px 0px;
+}
+
+.user-settings-label {
+    position: relative;
+    width: 100%;
+
+    &:before {
+        content: url(../../../../../static/icons/user.svg);
+        width: 12px;
+        height: 12px;
+        background: #3c8b8f;
+        border-radius: 50%;
+        margin: 2px 5px;
+        padding: 3px;
+        position: absolute;
+        inset: 0;
+      }
+
+    input {
+        width: 95%;
+    }
+}
