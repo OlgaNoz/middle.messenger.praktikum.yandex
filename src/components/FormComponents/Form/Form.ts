@@ -3,7 +3,6 @@ import { Block, IComponentProps } from "../../../core/Block";
 import { ActionButton } from "../../ActionButton/ActionButton";
 import { FormInput } from "../FormInput/FormInput";
 import template from "./Form.hbs";
-import "./Form.scss";
 
 export interface IFormProps extends IComponentProps {
     url: string;
