@@ -1,6 +1,6 @@
 import { IButtonProps } from "../../components/ActionButton/ActionButton"
-import { IFormInputProps } from "../../components/Form/FormInput/FormInput";
-import { UserSignForm } from "../../components/Form/UserSignForm/UserSignForm";
+import { IFormInputProps } from "../../components/FormComponents/FormInput/FormInput";
+import { UserSignForm } from "../../components/FormComponents/UserSignForm/UserSignForm";
 
 export class LoginPage {
     static _submitButtonProps = {

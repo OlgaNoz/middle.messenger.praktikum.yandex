@@ -1,8 +1,8 @@
 import { isValidFormInput } from "../../common/scripts/FormValidation";
 import { ActionButton, IButtonProps } from "../../components/ActionButton/ActionButton";
 import { AvatarButton } from "../../components/AvatarButton/AvatarButton";
-import { Form } from "../../components/Form/Form/Form";
-import { FormInput, IFormInputProps } from "../../components/Form/FormInput/FormInput";
+import { Form } from "../../components/FormComponents/Form/Form";
+import { FormInput, IFormInputProps } from "../../components/FormComponents/FormInput/FormInput";
 import { Block, IComponentProps } from "../../core/Block";
 import template from "./UserSettingsPage.hbs";
 import "./UserSettingsPage.scss"

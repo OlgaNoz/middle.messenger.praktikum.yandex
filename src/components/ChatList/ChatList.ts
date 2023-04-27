@@ -1,11 +1,11 @@
 import { Block, IComponentProps } from "../../core/Block";
 import { ActionButton } from "../ActionButton/ActionButton";
-import { FormInput } from "../Form/FormInput/FormInput";
 import { IMessagePreview, MessagePreview } from "../MessagePreview/MessagePreview";
 import chatList from "./ChatList.hbs"
 import "./ChatList.scss"
 import "../../common/styles/icons.scss"
 import { AvatarButton } from "../AvatarButton/AvatarButton";
+import { FormInput } from "../FormComponents/FormInput/FormInput";
 
 const newChatContext = {
     contactUserName: "Л",

@@ -2,7 +2,7 @@ import { isValidFormInput } from "../../common/scripts/FormValidation";
 import { Block, IComponentProps } from "../../core/Block";
 import { ActionButton } from "../ActionButton/ActionButton";
 import { AvatarButton } from "../AvatarButton/AvatarButton";
-import { FormInput } from "../Form/FormInput/FormInput";
+import { FormInput } from "../FormComponents/FormInput/FormInput";
 import { IMessageProps, Message } from "../Message/Message";
 import messageContainer from "./MessageContainer.hbs"
 import "./MessageContainer.scss";
