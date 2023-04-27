@@ -1,0 +1,16 @@
+<form action="{{url}}">
+    <ul>
+        {{#each inputComponents}}
+            <li class="input-item">
+                <label class="user-settings-label">
+                    {{{this}}}
+                </label>
+            </li>
+        {{/each}}
+    </ul>
+    <div class="form-buttons">
+        {{#each buttons}}
+            {{{this}}}
+        {{/each}}
+    </div>
+</form>
