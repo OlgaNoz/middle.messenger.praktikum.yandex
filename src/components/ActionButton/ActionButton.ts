@@ -1,4 +1,4 @@
-import template from "./actionButtonTemplate.hbs"
+import template from "./ActionButtonTemplate.hbs"
 import "./ActionButton.scss"
 import { Block, IComponentProps } from "../../core/Block";
 
