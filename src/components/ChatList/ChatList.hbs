@@ -1,0 +1,15 @@
+<div class="chat-list">
+    <div class="user-block">
+        {{{userSettingsButton}}}
+        {{{searchChatInput}}}
+        {{#if inputNotNull}}
+        {{{clearSearchInputButton}}}
+        {{/if}}
+    </div>
+    <div class="contact-users-preview-messages">
+        {{#each messagesPreview}}
+            {{{this}}}
+        {{/each}}
+    </div>
+    {{{addChatButton}}}
+</div>

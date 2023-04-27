@@ -1,0 +1,68 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        // 4 пробела в качестве отступа
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        
+        // одна декларация на строку
+        "one-var-declaration-per-line": [
+            "error"
+        ],
+
+        //Пробелы после запятых
+        "comma-spacing": "error",
+
+        // Пробелы после ключевых слов
+        "keyword-spacing": ["error", { "after": true }],
+
+        // пробел между оператором и операндами.
+        "space-infix-ops": ["error"],
+
+        // длина строки не должна превышать 160 символов
+        "max-len": [
+            "error",
+            {
+                "code": 160
+            }
+        ],
+
+        // Не используем var
+        "no-var": [
+            "error"
+        ],
+
+        //Проверка равенства/неравенства осуществляется исключительно через операторы === / !==
+        "eqeqeq": [
+            "error",
+            "always",
+            {"null": "ignore"}
+        ],
+
+        // тернарный условный оператор записывается в 3 строчки
+        // В случае, если выражение умещается в одну строчку, то допустимо использовать однострочную запись
+        "operator-linebreak": ["error", "before"],
+        "multiline-ternary": ["error", "always-multiline"],
+
+        //Используем константы, а не переменные, если значение не перезаписывается.
+        "prefer-const": [
+            "error",
+            {"destructuring": "all"}
+        ],
+
+        // Комментарии указываются только на отдельной строчке
+        "no-inline-comments": [
+            "error",
+            { "ignorePattern": "cspell" }
+        ],
+
+        // Между методами и конструкторами класса добавляется пустая строка
+        "lines-between-class-members": ["error", "always", 
+          { 
+            "exceptAfterSingleLine": true
+          }
+        ]
+    }
+  } 

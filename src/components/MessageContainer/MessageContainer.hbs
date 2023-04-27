@@ -1,0 +1,31 @@
+<div class="message-container">
+    {{#if hideChat}}
+    <div class="empty-chat">Выберите чат и начните общение</div>
+    {{else}}
+    <div class="user-block">
+        <div class="contact-user-info">
+            {{{contactUserChatButton}}}
+            {{{avatar}}}
+            <span class="contact-user-name">{{contactUserChatName}}</span>
+        </div>
+        <div class="contact-user-settings">
+            <button class="icon-transparent">
+                <div class="icon-edit"></div>
+            </button>
+            {{{deleteChatButton}}}
+        </div>
+        <div>
+        </div>
+    </div>
+    <div class="message">
+        <div class="message-container-field">
+            {{#each chatMessages}}
+                {{{this}}}
+            {{/each}}
+        </div>
+        <div class="input-message-field">
+            {{{typeInput}}}
+        </div>
+    </div>
+    {{/if}}
+</div>

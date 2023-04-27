@@ -1,0 +1,9 @@
+<div 
+    {{#if isOutgoing}}
+    class="current-user-message"
+    {{else}}
+    class="contact-user-message"
+    {{/if}}>
+    {{contactUserChatMessage}}
+    <span class="message-user-time">{{contactUserChatTime}}</span>
+</div>
