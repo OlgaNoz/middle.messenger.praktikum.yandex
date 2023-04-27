@@ -1,5 +1,5 @@
 .contact-user-message {
-    background: rgba(254, 254, 254, 0.7);
+    background: rgba(254 254 254 / 70%);
     border-radius: 5px;
     font-size: 8px;
     max-width: 50%;
@@ -12,10 +12,9 @@
 .current-user-message {
     max-width: 50%;
     width: fit-content;
-    background: rgba(255, 233, 212, 0.7);
+    background: rgba(255 233 212 / 70%);
     border-radius: 5px;
     padding: 5px;
-    margin-left: auto;
     margin: 10px 10px 10px auto;
     font-size: 8px;
     line-height: 12px;

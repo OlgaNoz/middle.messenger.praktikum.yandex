@@ -1,5 +1,5 @@
 .contact-user-chat {
-    background: rgba(254, 254, 254, 0.7);
+    background: rgba(254 254 254 / 70%);
     border-radius: 10px;
     margin: 10px 7px;
     height: 40px;
@@ -9,24 +9,24 @@
 
     &:hover,
     &:focus {
-        background: rgba(254, 254, 254);
+        background: rgba(254 254 254);
     }
 }
 
 .contact-user-chat-name {
     font-size: 12px;
     line-height: 15px;
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0 0 0 / 80%);
 }
 
 .contact-user-chat-time {
     font-size: 10px;
     line-height: 15px;
-    color: rgba(0, 0, 0, 0.54);
+    color: rgba(0 0 0 / 54%);
 }
 
 .contact-user-message-preview {
-    font-family: 'Inter';
+    font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 10px;
@@ -34,15 +34,15 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: rgba(0, 0, 0, 0.4);
+    color: rgba(0 0 0 / 40%);
 }
 
 .contact-user-unread-message-count {
     font-size: 8px;
     line-height: 15px;
-    color: rgba(0, 0, 0, 0.85);
+    color: rgba(0 0 0 / 85%);
     text-align: center;
-    background: rgb(255, 233, 212, 0.7);
+    background: rgb(255 233 212 / 70%);
     border-radius: 50%;
     width: 15px;
     height: 15px;

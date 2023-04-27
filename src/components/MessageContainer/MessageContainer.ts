@@ -2,7 +2,7 @@ import { isValidFormInput } from "../../common/scripts/FormValidation";
 import { Block, IComponentProps } from "../../core/Block";
 import { ActionButton } from "../ActionButton/ActionButton";
 import { AvatarButton } from "../AvatarButton/AvatarButton";
-import { FormInput } from "../Form/FormInput/FormInput";
+import { FormInput } from "../FormComponents/FormInput/FormInput";
 import { IMessageProps, Message } from "../Message/Message";
 import messageContainer from "./MessageContainer.hbs"
 import "./MessageContainer.scss";
@@ -18,9 +18,6 @@ export class MessageContainer extends Block<IMessageContainer> {
     private typeInput: FormInput;
     constructor(props: IMessageContainer) {
         super(props);
-    }
-
-    protected init(): void {
 
         this.typeInput = new FormInput({
             placeholder: "Введите сообщение...",
@@ -37,6 +34,9 @@ export class MessageContainer extends Block<IMessageContainer> {
                 }
             }
         });
+    }
+
+    protected init(): void {
 
         this.children.typeInput = this.typeInput;
 

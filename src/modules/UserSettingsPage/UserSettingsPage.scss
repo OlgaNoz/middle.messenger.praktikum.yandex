@@ -1,10 +1,23 @@
+.short-user-info {
+    display: flex;
+    align-items: center;
+
+    .user-settings-button {
+        margin: 0 5px 0 0;
+    }
+
+    input {
+        margin: 0;
+    }
+}
+
 .user-settings-form {
-    background: rgba(254, 254, 254, 0.4);
+    background: rgba(254 254 254 / 40%);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5px 15px 15px 15px;
+    padding: 5px 15px 15px;
 
     .image-content {
         img {
@@ -30,8 +43,9 @@
         button {
             line-height: 20px;
         }
+
         .cancel-button {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0 0 0 / 20%);
             margin-left: 5px;
         }
     }
@@ -47,7 +61,7 @@
         direction: rtl;
         color: #000c;
         height: 22px;
-        background: rgba(254, 254, 254, 0.7);
+        background: rgba(254 254 254 / 70%);
         font-weight: 400;
         font-size: 9px;
     }
@@ -67,9 +81,10 @@
         position: relative;
         width: 100%;
     
-        &:before {
+        &::before {
             @include input-icon;
-            content: url(../../../static/icons/user.svg);
+
+            content: url("../../../static/icons/user.svg");
         }
     
         input {
@@ -81,24 +96,11 @@
 .user-settings-form-name {
     font-size: 15px;
     line-height: 25px;
-    color: rgba(0, 0, 0, 0.8);
-}
-
-.short-user-info {
-    display: flex;
-    align-items: center;
-
-    .user-settings-button {
-        margin: 0px 5px 0px 0px;
-    }
-
-    input {
-        margin: 0;
-    }
+    color: rgba(0 0 0 / 80%);
 }
 
 .settings-chat-name {
     display: block;
     font-size: 8px;
-    margin: 2px 0px;
+    margin: 2px 0;
 }

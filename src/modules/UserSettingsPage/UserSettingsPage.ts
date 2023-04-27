@@ -1,8 +1,8 @@
 import { isValidFormInput } from "../../common/scripts/FormValidation";
 import { ActionButton, IButtonProps } from "../../components/ActionButton/ActionButton";
 import { AvatarButton } from "../../components/AvatarButton/AvatarButton";
-import { Form } from "../../components/Form/Form/Form";
-import { FormInput, IFormInputProps } from "../../components/Form/FormInput/FormInput";
+import { Form } from "../../components/FormComponents/Form/Form";
+import { FormInput, IFormInputProps } from "../../components/FormComponents/FormInput/FormInput";
 import { Block, IComponentProps } from "../../core/Block";
 import template from "./UserSettingsPage.hbs";
 import "./UserSettingsPage.scss"
@@ -78,10 +78,6 @@ export class UserSettingsPage extends Block<IComponentProps> {
 
     constructor(props: IComponentProps) {
         super(props);
-    }
-
-    protected init(): void {
-        this.children.avatar = new AvatarButton({});
 
         this.inputComponents = _inputComponents.map(props => {
             const formInput = new FormInput({
@@ -94,7 +90,6 @@ export class UserSettingsPage extends Block<IComponentProps> {
             return formInput;
         });
 
-         
         this.form = new Form({
             buttons: _submitButtonProps.map(props => {
                 return new ActionButton(props)
@@ -102,6 +97,10 @@ export class UserSettingsPage extends Block<IComponentProps> {
             url: "",
             inputComponents: this.inputComponents,
         })
+    }
+
+    protected init(): void {
+        this.children.avatar = new AvatarButton({});
 
         this.children.form = this.form
     }

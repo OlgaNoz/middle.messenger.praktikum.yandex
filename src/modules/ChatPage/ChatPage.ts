@@ -31,9 +31,7 @@ export class ChatPage extends Block<IChatPageProps>{
 
     constructor(props: IChatPageProps) {
         super(props);
-    }
 
-    init(): void {
         this._chatList = new ChatList({
             messages: oldChatContext,
             activeChat: -1
@@ -49,14 +47,17 @@ export class ChatPage extends Block<IChatPageProps>{
             })
         });
 
-        this.children.chatList = this._chatList;
         this._messageContainer = new MessageContainer({
             messages: [],
             contactUserChatName: '',
             contactUserName: '',
             hideChat: true
         });
+    }
 
+    init(): void {
+        this.children.chatList = this._chatList;
+        
         this.children.messageContainer = this._messageContainer;
     }
 

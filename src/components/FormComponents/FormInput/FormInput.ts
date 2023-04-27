@@ -1,4 +1,3 @@
-import { isValidFormInput } from "../../../common/scripts/FormValidation";
 import { Block, IComponentProps } from "../../../core/Block";
 import formInputTemplate from "./FormInput.hbs"
 import "./FormInput.scss"

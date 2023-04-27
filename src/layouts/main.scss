@@ -4,8 +4,8 @@ body {
     flex-direction:column;
     margin:0;
     overflow-y: hidden;
-    background: linear-gradient(359.58deg, #93D0D3 0.27%, rgba(147, 208, 211, 0) 99.54%);
-    font-family: 'Inter', sans-serif;
+    background: linear-gradient(359.58deg, #93d0d3 0.27%, rgba(147 208 211 / 0%) 99.54%);
+    font-family: Inter, sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 10px;
@@ -26,11 +26,12 @@ body {
 ul {
     list-style-type: none;
 }
+
 .menu-list {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(60, 139, 143, 0.66);
+    background-color: rgba(60 139 143 / 66%);
 }
 
 .menu-list-element {
@@ -46,5 +47,5 @@ ul {
 }
 
 .menu-list-element a:hover {
-    background-color: rgb(60, 139, 143, 0.9);;
+    background-color: rgba(60 139 143 / 90%);;
 }
