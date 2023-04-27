@@ -78,7 +78,9 @@ export class UserSettingsPage extends Block<IComponentProps> {
 
     constructor(props: IComponentProps) {
         super(props);
+    }
 
+    protected init(): void {
         this.inputComponents = _inputComponents.map(props => {
             const formInput = new FormInput({
                 ...props,
@@ -97,9 +99,7 @@ export class UserSettingsPage extends Block<IComponentProps> {
             url: "",
             inputComponents: this.inputComponents,
         })
-    }
-
-    protected init(): void {
+        
         this.children.avatar = new AvatarButton({});
 
         this.children.form = this.form

@@ -9,6 +9,7 @@
       "noUnusedLocals": true,
       "sourceMap": true,
       "strictNullChecks": true,
+      "strictPropertyInitialization": false,
       "forceConsistentCasingInFileNames": true,
       "strict": true,
       "skipLibCheck": true,

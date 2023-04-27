@@ -27,7 +27,9 @@ export class ChatList extends Block<IChatListProps> {
     
     constructor(props: IChatListProps) {
         super(props);
-        
+    }
+    
+    init() {
         this._searchInputValue = "";
 
         this.messagesPreview = this.props.messages.map((message) => {
@@ -36,9 +38,7 @@ export class ChatList extends Block<IChatListProps> {
             }
             return new MessagePreview(newChatProps);
         });
-    }
-    
-    init() {
+        
         this.getChats();
 
         this.setProps({
