@@ -22,11 +22,20 @@ export interface IChatListProps extends IComponentProps {
 }
 
 export class ChatList extends Block<IChatListProps> {
-    private _searchInputValue: string;
+    _searchInputValue: string;
     public messagesPreview: MessagePreview[];
     
     constructor(props: IChatListProps) {
         super(props);
+        
+        this._searchInputValue = "";
+
+        this.messagesPreview = this.props.messages.map((message) => {
+            const newChatProps = {
+                ...message
+            }
+            return new MessagePreview(newChatProps);
+        });
     }
     
     init() {
@@ -35,13 +44,6 @@ export class ChatList extends Block<IChatListProps> {
         this.setProps({
             inputNotNull: false
         })
-
-        this.messagesPreview = this.props.messages.map((message) => {
-            const newChatProps = {
-                ...message
-            }
-            return new MessagePreview(newChatProps);
-        });
 
         this.children.messagesPreview = this.messagesPreview;
         

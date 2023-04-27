@@ -18,9 +18,6 @@ export class MessageContainer extends Block<IMessageContainer> {
     private typeInput: FormInput;
     constructor(props: IMessageContainer) {
         super(props);
-    }
-
-    protected init(): void {
 
         this.typeInput = new FormInput({
             placeholder: "Введите сообщение...",
@@ -37,6 +34,9 @@ export class MessageContainer extends Block<IMessageContainer> {
                 }
             }
         });
+    }
+
+    protected init(): void {
 
         this.children.typeInput = this.typeInput;
 

@@ -22,9 +22,7 @@ export class UserSignForm extends Block<IUserSignFormProps> {
 
     constructor(props: IUserSignFormProps) {
         super(props);
-    }
 
-    protected init(): void {
         const submitButton = new ActionButton(this.props.submitButton);
 
         this.inputComponents = this.props.inputComponents.map(props => {
@@ -43,7 +41,9 @@ export class UserSignForm extends Block<IUserSignFormProps> {
             url: this.props.url,
             inputComponents: this.inputComponents
         });
+    }
 
+    protected init(): void {
         this.children.link = new Link({
             href: this.props.href,
             linkName: this.props.linkName,
