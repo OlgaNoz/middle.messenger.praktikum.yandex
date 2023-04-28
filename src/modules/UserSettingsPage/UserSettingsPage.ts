@@ -3,6 +3,7 @@ import { ActionButton, IButtonProps } from "../../components/ActionButton/Action
 import { AvatarButton } from "../../components/AvatarButton/AvatarButton";
 import { Form } from "../../components/FormComponents/Form/Form";
 import { FormInput, IFormInputProps } from "../../components/FormComponents/FormInput/FormInput";
+import { InputWithMessage } from "../../components/FormComponents/InputWithMessage/InputWithMessage";
 import { Block, IComponentProps } from "../../core/Block";
 import template from "./UserSettingsPage.hbs";
 import "./UserSettingsPage.scss"
@@ -73,7 +74,7 @@ const _inputComponents = [
 ] as IFormInputProps[];
 
 export class UserSettingsPage extends Block<IComponentProps> {
-    inputComponents: FormInput[];
+    inputComponents: InputWithMessage[];
     form: Form;
 
     constructor(props: IComponentProps) {
@@ -85,11 +86,13 @@ export class UserSettingsPage extends Block<IComponentProps> {
             const formInput = new FormInput({
                 ...props,
                 events: {
-                    blur: this.formValidation.bind(this),
-                    focus: this.formValidation.bind(this)
+                    blur: this.formValidation.bind(this)
                 }
             });
-            return formInput;
+            const inputWithMessage = new InputWithMessage({
+                input: formInput
+            })
+            return inputWithMessage;
         });
 
         this.form = new Form({
@@ -109,10 +112,11 @@ export class UserSettingsPage extends Block<IComponentProps> {
         const formInputValues = this.form.getFormInputValues();
         formInputValues.forEach(element => {
             const { name, value } = element;
-            if (value !== "" && !isValidFormInput(name, value)) {
-                this.form.setValidInput(name, true);
+            const validation = isValidFormInput(name, value);
+            if (value !== "" && !validation.valid) {
+                this.form.setValidInput(name, true, validation.errorText);
             } else {
-                this.form.setValidInput(name, false);
+                this.form.setValidInput(name, false, "");
             }
         });
     }
