@@ -1,0 +1,16 @@
+.input-with-message {
+    display: block;
+    margin-bottom: 10px;
+
+    input {
+        display: block;
+        margin-bottom: 0;
+    }
+
+    label {
+        display: block;
+        color: red;
+        font-size: 8px;
+        margin-top: 2px;
+    }
+}

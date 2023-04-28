@@ -6,6 +6,7 @@ import { FormInput, IFormInputProps } from "../FormInput/FormInput";
 import { Form } from "../Form/Form";
 import { Link } from "../../Link/Link";
 import { isValidFormInput } from "../../../common/scripts/FormValidation";
+import { InputWithMessage } from "../InputWithMessage/InputWithMessage";
 
 export interface IUserSignFormProps extends IComponentProps {
     formName: string,
@@ -18,7 +19,7 @@ export interface IUserSignFormProps extends IComponentProps {
 
 export class UserSignForm extends Block<IUserSignFormProps> {
     form: Form;
-    inputComponents: FormInput[];
+    inputComponents: InputWithMessage[];
 
     constructor(props: IUserSignFormProps) {
         super(props);
@@ -31,11 +32,13 @@ export class UserSignForm extends Block<IUserSignFormProps> {
             const formInput = new FormInput({
                 ...props,
                 events: {
-                    blur: this.formValidation.bind(this),
-                    focus: this.formValidation.bind(this)
+                    blur: this.formValidation.bind(this)
                 }
             });
-            return formInput;
+            const inputWithMessage = new InputWithMessage({
+                input: formInput
+            })
+            return inputWithMessage;
         });
 
         this.form = new Form({
@@ -57,10 +60,11 @@ export class UserSignForm extends Block<IUserSignFormProps> {
         const formInputValues = this.form.getFormInputValues();
         formInputValues.forEach(element => {
             const { name, value } = element;
-            if (value !== "" && !isValidFormInput(name, value)) {
-                this.form.setValidInput(name, true);
+            const validation = isValidFormInput(name, value);
+            if (value !== "" && !validation.valid) {
+                this.form.setValidInput(name, true, validation.errorText);
             } else {
-                this.form.setValidInput(name, false);
+                this.form.setValidInput(name, false, "");
             }
         });
     }

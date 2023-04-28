@@ -7,7 +7,8 @@ export interface IFormInputProps extends IComponentProps {
     name?: string;
     placeholder: string;
     value?: string | null;
-    invalid?: boolean
+    invalid?: boolean;
+    errorText?: string;
 }
 
 export class FormInput extends Block<IFormInputProps> {
