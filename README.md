@@ -1,6 +1,6 @@
 # messenger-project
 
-<p><b>Netlify:</b> https://642eb980984db00008d53f30--cozy-seahorse-1cf4fe.netlify.app/</p>
+<p><b>Netlify:</b> https://cozy-seahorse-1cf4fe.netlify.app/</p>
 <p><b>Figma layout:</b> https://www.figma.com/file/3GZLr6oO5jSXx3jHEkbCyn/Untitled?node-id=34%3A302&t=VLWItWQBw4Urc5L4-1</p>
 
 #### Build commands
