@@ -1,0 +1,15 @@
+.form-input {
+    height: 22px;
+    background: #fefefeb3;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 0 5px;
+    outline: none;
+    font-size: 9px;
+    font-weight: 400;
+}
+
+.invalid-input {
+    outline: solid red;
+}

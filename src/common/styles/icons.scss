@@ -1,0 +1,49 @@
+@mixin icon {
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    padding: 3px;
+}
+
+.icon-transparent {
+    @include icon;
+
+    background: transparent;
+    
+    &:hover,
+    &:focus {
+        background: rgba(0 0 0 / 10%);
+        border-color: rgba(0 0 0 / 10%);
+    }
+}
+
+.icon-solid {
+    @include icon;
+
+    background: #3c8b8f;
+}
+
+.icon-trash {
+    background-image: url("../../../static/icons/trash-alt.svg");
+    width: 20px;
+    height: 20px;
+}
+
+.icon-edit {
+    background-image: url("../../../static/icons/pen.svg");
+    width: 20px;
+    height: 20px;
+}
+
+.icon-add {
+    background-image: url("../../../static/icons/plus.svg");
+    width: 20px;
+    height: 20px;
+}
+
+.icon-clear {
+    background-image: url("../../../static/icons/multiply.svg");
+    width: 10px;
+    height: 10px;
+}

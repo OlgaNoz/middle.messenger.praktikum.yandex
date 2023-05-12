@@ -1,0 +1,28 @@
+.message-container {
+    width: 75vw;
+    height: 100vh;
+}
+
+.message-container-field {
+    height: calc(100vh - 90px);
+    overflow-y: auto;
+}
+
+.empty-chat {
+    width: 100%;
+    height: 100%;
+    place-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.input-message-field {
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+    width: 60vw; 
+
+    .user-search-field {
+        width: 80%;
+    }
+}
