@@ -50,7 +50,7 @@ export class ChatController {
 
     public getChatUsers(id: number) {
         return chatApi.getChatUsers(id).then((result) => {
-            const chatUsers = (result as IChatUser[]).filter(x => x.role !== "admin");
+            const chatUsers = (result as IChatUser[]);
             Store.set('chatUsers', chatUsers);
         })
     }

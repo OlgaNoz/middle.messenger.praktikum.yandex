@@ -33,7 +33,15 @@ export default class WebSockets extends EventBus {
     public connect(): Promise<void> {
         this.socket = new WebSocket(this.url);
 
-        this.subscribe();
+        this.addEvents();
+
+        let interval = setInterval(() => {
+            this.send({ type: 'ping' });
+          }, 5000)
+      
+          this.on(WSEvents.Close, () => {
+            clearInterval(interval);
+          })
 
         return new Promise((resolve) => {
             this.on(WSEvents.Connected, () => {
@@ -46,22 +54,20 @@ export default class WebSockets extends EventBus {
         this.socket?.close();
     }
 
-    private subscribe() {
+    private addEvents() {
         this.socket.addEventListener('open', () => {
-            console.log('Соединение установлено');
             this.emit(WSEvents.Connected)
         });
     
         this.socket.addEventListener('close', () => {
-        // this.emit(WSEvents.Close)
-        });
-
-        this.socket.addEventListener('error', (e) => {
-        //this.emit(WSEvents.Error, e)
+            this.emit(WSEvents.Close)
         });
 
         this.socket.addEventListener('message', (message) => {
             const data = JSON.parse(message.data);
+            if (data.type && data.type === 'pong') {
+                return;
+            }
             this.emit(WSEvents.Message, data)
         });
     }

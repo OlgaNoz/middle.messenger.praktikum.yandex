@@ -36,7 +36,8 @@ export class MessagesController {
         if (Array.isArray(messages)) {
             messagesToAdd = messages.reverse();
         } else {
-            messagesToAdd.push(messages);
+            if (messages.user_id)
+                messagesToAdd.push(messages);
         }
 
         const currentMessages = (Store.getState().messages || []) as IMessage[];

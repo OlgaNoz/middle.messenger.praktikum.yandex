@@ -149,7 +149,7 @@ class UserSettingsPageComponent extends Block<IUserSettingsPage> {
             }), new ActionButton({
                 buttonName: "Применить настройки",
                 buttonType: "submit",
-                classNames: ["submit-button"],
+                classNames: ["submit-button"]
             }),
             new ActionButton({
                 buttonName: "Отменить",
