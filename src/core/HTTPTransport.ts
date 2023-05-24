@@ -20,9 +20,16 @@ function queryStringify(data: object) {
     result = result.substr(0, result.length - 1);
     return result;
 }
-
+const apiUrl = 'https://ya-praktikum.tech/api/v2';
 export class HTTPTransport {
+    fullApiUrl: string;
+
+    constructor(url: string) {
+        this.fullApiUrl = apiUrl + url;
+    }
+
     get = (url: string, options: Options = {}) => {
+        url = this.fullApiUrl + url;
         if (options.data) {
             url += queryStringify(options.data);
         }
@@ -30,14 +37,17 @@ export class HTTPTransport {
     };
 
     post = (url: string, options: Options = {}) => {
+        url = this.fullApiUrl + url;
         return this.request(url, {...options, method: METHODS.POST}, options.timeout);
     };
 
     put = (url: string, options: Options = {}) => {
+        url = this.fullApiUrl + url;
         return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
     };
 
     delete = (url: string, options: Options = {}) => {
+        url = this.fullApiUrl + url;
         return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
     };
 
@@ -46,23 +56,35 @@ export class HTTPTransport {
     // data — obj
     request = (url: string, options: Options, timeout = 5000) => {
         const {method, data, headers} = options;
-
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open(method !== undefined ? method : METHODS.GET, url);
 
-            xhr.onload = function() {
-                resolve(xhr);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.response);
+                    } else {
+                        reject(xhr.response);
+                    }
+                }
             };
-            
+
+            if (!(data instanceof FormData)) {
+                xhr.setRequestHeader("content-type", "application/json");
+            }
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            xhr.withCredentials = true;
+            xhr.responseType = 'json';
+
             if (headers) {
                 for (const [key, value] of Object.entries(headers)) {
                     xhr.setRequestHeader(key, value);
                 }
             }
 
-            xhr.onabort = reject;
-            xhr.onerror = reject;
+            xhr.onabort = () => reject({reason: 'abort'});
+            xhr.onerror = () => reject({reason: 'network error'});
             xhr.ontimeout = function() {
                 reject;
                 throw new Error("Превышено время ожидания");
@@ -70,6 +92,8 @@ export class HTTPTransport {
 
             if (method === METHODS.GET || !data) {
                 xhr.send();
+            } else if (method === METHODS.PUT && data instanceof FormData) {
+                xhr.send(data)
             } else {
                 xhr.send(JSON.stringify(data));
             }

@@ -55,8 +55,17 @@
 }
 
 .contact-users-preview-messages {
-    height: calc(100% - 90px);
+    height: calc(100% - 60px);
     overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    &::-webkit-scrollbar-thumb
+    {
+        background-color: #3c8b8f;
+    }
 }
 
 .clear-button {

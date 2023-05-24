@@ -1,14 +1,15 @@
 import { isValidFormInput } from "../../../common/scripts/FormValidation";
 import { Block, IComponentProps } from "../../../core/Block";
 import { ActionButton } from "../../ActionButton/ActionButton";
-import { FormInput } from "../FormInput/FormInput";
+import { Link } from "../../Link/Link";
 import { InputWithMessage } from "../InputWithMessage/InputWithMessage";
 import template from "./Form.hbs";
 
 export interface IFormProps extends IComponentProps {
     url: string;
     inputComponents: InputWithMessage[];
-    buttons: ActionButton[];
+    buttons: (ActionButton | Link)[];
+    submit: () => void;
 }
 
 export class Form extends Block<IFormProps> {
@@ -23,28 +24,36 @@ export class Form extends Block<IFormProps> {
     protected init(): void {
         this.setProps({
             events: {
-                submit: this.submitButtonClick.bind(this)
+                submit: (event: MouseEvent) => {
+                    event.preventDefault();
+                    this.submitButtonClick();
+                }
             }
         })
     }
 
-    submitButtonClick(event: MouseEvent) {
-        event.preventDefault();
-        this.formValidation();
-        console.log(this.getFormInputValues());
+    submitButtonClick() {
+        const validationResult = this.formValidation();
+        if (validationResult) {
+            this.props.submit();
+        }
     }
 
     formValidation() {
         const formInputValues = this.getFormInputValues();
+        let validationResult = true;
         formInputValues.forEach(element => {
             const { name, value } = element;
             const validation = isValidFormInput(name, value);
-            if (value !== "" && !validation.valid) {
+            if (value !== "" && !validation.valid || value === "") {
                 this.setValidInput(name, true, validation.errorText);
+                validationResult = validationResult && false;
             } else {
                 this.setValidInput(name, false, "");
+                validationResult = validationResult && true;
             }
         });
+        return validationResult;
     }
 
     getFormInputValues() {
