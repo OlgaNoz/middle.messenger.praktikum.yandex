@@ -1,3 +1,5 @@
+import Router from "./Router";
+
 export interface Options {
     data?: object;
     headers?: object;
@@ -65,7 +67,14 @@ export class HTTPTransport {
                     if (xhr.status === 200) {
                         resolve(xhr.response);
                     } else {
-                        reject(xhr.response);
+                        if (xhr.status === 401) {
+                            Router.go('/');
+                        } else {
+                            reject({
+                                status: xhr.status,
+                                data: xhr.response
+                            });
+                        }
                     }
                 }
             };

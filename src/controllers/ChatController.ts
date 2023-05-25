@@ -2,6 +2,7 @@ import { ChatAPI } from "../API/ChatApi";
 import { prettyDateFormat } from "../common/scripts/Utils";
 import { IChatUser } from "../components/ChatSettingsModal/ChatSettingsContent";
 import { IMessagePreview } from "../components/MessagePreview/MessagePreview";
+import Router from "../core/Router";
 import Store from "../core/Store";
 import { IUserInfo } from "./AuthController";
 import { MessagesController } from "./MessagesController";
@@ -37,6 +38,8 @@ export class ChatController {
                 })
             });
             Store.set('chats', chatPreviews);
+        }).catch((error) => {
+            alert(error.data.reason);
         });
     }
 
@@ -45,6 +48,8 @@ export class ChatController {
             this.getChatList().then(() => {
                 this.isOpenAddChatModal(false);
             });
+        }).catch((error) => {
+            alert(error.data.reason);
         });
     }
 
@@ -52,6 +57,8 @@ export class ChatController {
         return chatApi.getChatUsers(id).then((result) => {
             const chatUsers = (result as IChatUser[]);
             Store.set('chatUsers', chatUsers);
+        }).catch((error) => {
+            alert(error.data.reason);
         })
     }
 
@@ -84,6 +91,8 @@ export class ChatController {
                 this.getChatList().then(() => {
                     this.selectChat(undefined);
                 });
+            }).catch((error) => {
+                alert(error.data.reason);
             });
         }
     }
@@ -91,6 +100,8 @@ export class ChatController {
     public async deleteUserFromChat(user: number, chat: number) {
         chatApi.deleteUsersFromChat(user, chat).then(() => {
             this.getChatUsers(chat);
+        }).catch((error) => {
+            alert(error.data.reason);
         });
     }
 
@@ -105,6 +116,8 @@ export class ChatController {
     public addUsersToChat(user: number, chat: number) {
         return chatApi.addUsersToChat(user, chat).then(() => {
             this.getChatUsers(chat);
+        }).catch((error) => {
+            alert(error.data.reason);
         });
     }
 
@@ -113,6 +126,8 @@ export class ChatController {
     }
 
     public getToken(chat: number) {
-        return chatApi.getChatToken(chat);
+        return chatApi.getChatToken(chat).catch((error) => {
+            alert(error.data.reason);
+        });
     }
 }

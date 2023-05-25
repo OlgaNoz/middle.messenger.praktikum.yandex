@@ -22,7 +22,7 @@ export class AuthAPI extends BaseAPI {
         const options = {
             data 
         } as Options;
-        authAPIInstance.post('/signup', options);
+        return authAPIInstance.post('/signup', options);
     }
 
     signIn(data: ISignInRequest) {

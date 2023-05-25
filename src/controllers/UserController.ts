@@ -21,25 +21,35 @@ export class UserController {
         } else {
             return userApi.getUsersByLogin(text).then((result) => {
                 Store.set('foundUsers', result);
-            });
+            }).catch((error) => {
+                alert(error.data.reason);
+            }); 
         }
     }
 
     changeUserSettings(data: IUserSettings) {
         userApi.changeUserSettings(data).then(() => {
             Router.back();
+        }).catch((error) => {
+            alert(error.data.reason);
         });
     }
 
     changeUserAvatar(data: FormData) {
         userApi.changeAvatar(data).then(() => {
             Router.back();
-        });
+        }).catch((error) => {
+            alert(error.data.reason);
+        }); 
     }
 
     changeUserPassword(oldPass: string, newPass: string) {
         userApi.changePassword(oldPass, newPass).then(() => {
             this.changePasswordModal(false);
+        }).catch((error) => {
+            if (error.reason === "Password is incorrect") {
+                alert("Текущий пароль не совпадает")
+            }
         });
     }
 
