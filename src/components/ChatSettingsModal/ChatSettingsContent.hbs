@@ -1,0 +1,22 @@
+<div class="chat-settings-modal">
+    <div class="chat-settings-current-user-block">
+        {{#each chatUsers}}
+            {{{this}}}
+        {{/each}}
+    </div>
+    <div class="chat-settings-users">
+        <div class="content">
+            <div class="search">
+            {{{newUserInput}}}
+            </div>
+            <ul class="found-users">
+                {{#each foundUsers}}
+                    <li class="search-user-item">
+                        {{{this}}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+
+    </div>
+</div>

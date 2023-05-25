@@ -1,23 +1,25 @@
-.contact-user-message {
-    background: rgba(254 254 254 / 70%);
-    border-radius: 5px;
-    font-size: 8px;
+@mixin message {
+    padding: 5px;
     max-width: 50%;
+    font-size: 8px;
     line-height: 12px;
     width: fit-content;
-    padding: 5px;
+    border-radius: 5px;
+    word-break: break-word;
+}
+
+.contact-user-message {
+    @include message;
+    
+    background: rgba(254 254 254 / 70%);
     margin: 10px;
 }
 
 .current-user-message {
-    max-width: 50%;
-    width: fit-content;
+    @include message;
+
     background: rgba(255 233 212 / 70%);
-    border-radius: 5px;
-    padding: 5px;
     margin: 10px 10px 10px auto;
-    font-size: 8px;
-    line-height: 12px;
 }
 
 .message-user-time {
@@ -29,4 +31,11 @@
     height: calc(var(--message-meta-height, 1rem));
     margin-left: 0.4375rem;
     margin-right: -0.1rem;
+}
+
+.message-block {
+    &.contact {
+        display: flex;
+        align-items: center;
+    }
 }

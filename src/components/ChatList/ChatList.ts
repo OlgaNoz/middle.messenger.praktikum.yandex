@@ -4,48 +4,33 @@ import { IMessagePreview, MessagePreview } from "../MessagePreview/MessagePrevie
 import chatList from "./ChatList.hbs"
 import "./ChatList.scss"
 import "../../common/styles/icons.scss"
-import { AvatarButton } from "../AvatarButton/AvatarButton";
 import { FormInput } from "../FormComponents/FormInput/FormInput";
+import Router from "../../core/Router";
+import { connect } from "../../core/Store";
+import { ChatController } from "../../controllers/ChatController";
+import { Modal } from "../Modal/Modal";
+import { AddChatModalContent } from "../AddChatModalContent/AddChatModalContent";
+import { AuthController } from "../../controllers/AuthController";
 
-const newChatContext = {
-    contactUserName: "Л",
-    contactUserChatName: "Леша",
-    contactUserChatMessage: "Привет, пойдем гулять? Погода шикарная, солнце такое яркое. Птицы поют, весна пришла",
-    contactUserChatTime: "11:00",
-    contactUserUnreadMessageCount: 2,
-}
+const chatController = new ChatController();
+const authController = new AuthController();
 
 export interface IChatListProps extends IComponentProps {
-    messages: IMessagePreview[];
+    chats: IMessagePreview[];
     activeChat: number;
     inputNotNull?: boolean;
 }
 
-export class ChatList extends Block<IChatListProps> {
+class ChatList extends Block<IChatListProps> {
     _searchInputValue: string;
-    public messagesPreview: MessagePreview[];
-    
-    constructor(props: IChatListProps) {
-        super(props);
-    }
+    public chatsPreview: MessagePreview[];
     
     init() {
         this._searchInputValue = "";
-
-        this.messagesPreview = this.props.messages.map((message) => {
-            const newChatProps = {
-                ...message
-            }
-            return new MessagePreview(newChatProps);
-        });
         
         this.getChats();
 
-        this.setProps({
-            inputNotNull: false
-        })
-
-        this.children.messagesPreview = this.messagesPreview;
+        this.children.chatsPreview = [];
         
         this.children.addChatButton = new ActionButton({
             buttonName: '<div class="icon-add"></div>',
@@ -56,7 +41,16 @@ export class ChatList extends Block<IChatListProps> {
             }
         });
 
-        this.children.userSettingsButton = new AvatarButton({});
+        this.children.userSettingsButton = new ActionButton({
+            buttonName: '<div class="icon-bars"></div>',
+            classNames: ["icon-transparent"],
+            buttonType: "button",
+            events: {
+                click: () => {
+                    Router.go("/settings");
+                }
+            }
+        });
 
         this.children.searchChatInput = new FormInput({
             classNames: ['user-search-field'],
@@ -84,46 +78,59 @@ export class ChatList extends Block<IChatListProps> {
                 }
             }
         });
+
+        const withIsAddChatActiveModal = connect((state) => ({isActive: state.isActiveAddChatModal}));
+        const AddChatActiveModal = withIsAddChatActiveModal(Modal);
+        this.children.modal = new AddChatActiveModal({
+            header: "Добавить новый чат",
+            isActive: false,
+            content: new AddChatModalContent({}),
+            cancelClick: () => {
+                chatController.isOpenAddChatModal(false);
+            }
+        });
     }
 
     private _filterChats(filteredString: string) {
         this._searchInputValue = filteredString;
-        const filteredValues = this.props.messages.filter(message => 
+        const filteredValues = this.props.chats.filter(message => 
             message.contactUserChatName.toLowerCase().includes(filteredString.toLowerCase())
         )
         this.setProps({
-            messages: filteredValues
+            chats: filteredValues
         });
     }
 
     protected componentDidUpdate(oldProps: IChatListProps, newProps: IChatListProps): boolean {
-        this.messagesPreview = this.props.messages.map((message) => {
+        this.children.chatsPreview = newProps.chats.map((chat) => {
             const newChatProps = {
-                ...message
+                ...chat,
+                events: {
+                    click: () => {
+                        chatController.selectChat(chat);
+                    }
+                }
             }
             return new MessagePreview(newChatProps);
         });
-
-        this.children.messagesPreview = this.messagesPreview;
 
         return true;
     }
 
     public addNewChat(): void {
-        this.props.messages.push(newChatContext);
-
-        this.setProps({
-            messages:  this.props.messages
-        });
+        chatController.isOpenAddChatModal(true);
     }
 
-    public getChats(): void {
-        this.setProps({
-            messages:  this.props.messages
-        });
+    public async getChats(): Promise<void> {
+        authController.getUser();
+        chatController.getChatList();
     }
 
     render() {
         return this.compile(chatList, {...this.props});
     }
 }
+
+const withChats = connect((state) => ({chats: state.chats || []}));
+
+export const ChatsListComponent = withChats(ChatList);

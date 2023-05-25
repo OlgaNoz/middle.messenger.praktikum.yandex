@@ -1,8 +1,15 @@
 <div class='image-container'>
     <div class="image-content" >
-        <img src="https://via.placeholder.com/130x130" alt="" />
+        {{#if src}}
+            <img src="{{src}}" alt="" />
+            {{else}}
+            <img src="{{defaultAvatar}}" alt="" />
+        {{/if}}
     </div>
-    <div class="image-file-input">
-        <input class='image-file-input' required="true" type="file" multiple="false" title="" />
+    {{#if isEditMode}}
+        <div class="image-file-input">
+        {{{avatarInput}}}
     </div>
+            {{/if}}
+
 </div >

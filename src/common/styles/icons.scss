@@ -11,8 +11,7 @@
 
     background: transparent;
     
-    &:hover,
-    &:focus {
+    &:hover {
         background: rgba(0 0 0 / 10%);
         border-color: rgba(0 0 0 / 10%);
     }
@@ -46,4 +45,22 @@
     background-image: url("../../../static/icons/multiply.svg");
     width: 10px;
     height: 10px;
+}
+
+.icon-bars {
+    background-image: url("../../../static/icons/bars.svg");
+    width: 20px;
+    height: 20px;
+}
+
+.icon-signout {
+    background-image: url("../../../static/icons/signout.svg");
+    width: 15px;
+    height: 15px;
+}
+
+.icon-close {
+    background-image: url("../../../static/icons/times.svg");
+    width: 20px;
+    height: 20px;
 }

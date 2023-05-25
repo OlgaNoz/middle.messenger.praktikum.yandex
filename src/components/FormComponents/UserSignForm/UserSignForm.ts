@@ -4,9 +4,10 @@ import { ActionButton, IButtonProps } from "../../ActionButton/ActionButton";
 import "./UserSignForm.scss"
 import { FormInput, IFormInputProps } from "../FormInput/FormInput";
 import { Form } from "../Form/Form";
-import { Link } from "../../Link/Link";
+import { Link, LINKS_LOCATIONS } from "../../Link/Link";
 import { isValidFormInput } from "../../../common/scripts/FormValidation";
 import { InputWithMessage } from "../InputWithMessage/InputWithMessage";
+import Router from "../../../core/Router";
 
 export interface IUserSignFormProps extends IComponentProps {
     formName: string,
@@ -14,9 +15,9 @@ export interface IUserSignFormProps extends IComponentProps {
     submitButton: IButtonProps,
     linkName: string,
     url: string;
-    href: string;
+    href: string | LINKS_LOCATIONS;
+    onSubmit: () => void;
 }
-
 export class UserSignForm extends Block<IUserSignFormProps> {
     form: Form;
     inputComponents: InputWithMessage[];
@@ -44,7 +45,10 @@ export class UserSignForm extends Block<IUserSignFormProps> {
         this.form = new Form({
             buttons: [ submitButton ],
             url: this.props.url,
-            inputComponents: this.inputComponents
+            inputComponents: this.inputComponents,
+            submit: () => {
+                this.props.onSubmit();
+            }
         });
 
         this.children.link = new Link({

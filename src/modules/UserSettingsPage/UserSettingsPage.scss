@@ -92,16 +92,31 @@
             width: 95%;
         }
     }
+
+    .change-password-button {
+        background: inherit;
+        display: block;
+        color: #000c;
+        line-height: 0px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .user-settings-form-header {
+        display: flex;
+        
+        .user-settings-form-header-name {
+            font-size: 12px;
+            line-height: 25px;
+            color: rgba(0 0 0 / 80%);
+        }
+    }
 }
 
-.user-settings-form-name {
-    font-size: 15px;
-    line-height: 25px;
-    color: rgba(0 0 0 / 80%);
-}
 
 .settings-chat-name {
     display: block;
     font-size: 8px;
     margin: 2px 0;
 }
+

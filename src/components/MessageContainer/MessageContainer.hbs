@@ -5,13 +5,13 @@
     <div class="user-block">
         <div class="contact-user-info">
             {{{contactUserChatButton}}}
-            {{{avatar}}}
+            <button class="user-settings-button user-list">
+                {{contactUserName}}
+            </button>
             <span class="contact-user-name">{{contactUserChatName}}</span>
         </div>
         <div class="contact-user-settings">
-            <button class="icon-transparent">
-                <div class="icon-edit"></div>
-            </button>
+            {{{editChatButton}}}
             {{{deleteChatButton}}}
         </div>
         <div>
@@ -28,4 +28,5 @@
         </div>
     </div>
     {{/if}}
+        {{{modal}}}
 </div>

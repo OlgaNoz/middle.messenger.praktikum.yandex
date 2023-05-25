@@ -1,27 +1,27 @@
 import { isValidFormInput } from "../../common/scripts/FormValidation";
-import { ActionButton, IButtonProps } from "../../components/ActionButton/ActionButton";
+import { ActionButton } from "../../components/ActionButton/ActionButton";
 import { AvatarButton } from "../../components/AvatarButton/AvatarButton";
+import { ChangePasswordModal } from "../../components/ChangePasswordModal/ChangePasswordModal";
 import { Form } from "../../components/FormComponents/Form/Form";
 import { FormInput, IFormInputProps } from "../../components/FormComponents/FormInput/FormInput";
 import { InputWithMessage } from "../../components/FormComponents/InputWithMessage/InputWithMessage";
-import { Block, IComponentProps } from "../../core/Block";
+import { Modal } from "../../components/Modal/Modal";
+import { AuthController, IUserInfo } from "../../controllers/AuthController";
+import { IUserSettings, UserController } from "../../controllers/UserController";
+import { Block } from "../../core/Block";
+import Router from "../../core/Router";
+import { connect } from "../../core/Store";
 import template from "./UserSettingsPage.hbs";
 import "./UserSettingsPage.scss"
 
-const _submitButtonProps = [
-    {
-        buttonType: "submit",
-        buttonName: "Применить настройки",
-        classNames: ["submit-button"],
-    },
-    {
-        buttonType: "button",
-        buttonName: "Отменить",
-        classNames: ["cancel-button"],
-    }
-] as IButtonProps[];
-
 const _inputComponents = [
+    {
+        type: "text",
+        name: "display_name",
+        placeholder: "Имя в чате",
+        classNames: [],
+        value: ""
+    },
     {
         type: "text",
         name: "first_name",
@@ -56,56 +56,63 @@ const _inputComponents = [
         placeholder: "Почта",
         classNames: [],
         value: ""
-    },
-    {
-        type: "password",
-        name: "password",
-        placeholder: "Пароль",
-        classNames: [],
-        value: ""
-    },
-    {
-        type: "password",
-        name: "confirmPassword",
-        placeholder: "Подтверждение",
-        classNames: [],
-        value: ""
     }
 ] as IFormInputProps[];
 
-export class UserSettingsPage extends Block<IComponentProps> {
+
+export interface IUserSettingsPage {
+    user?: IUserInfo;
+}
+
+const authController = new AuthController();
+const userController = new UserController();
+
+class UserSettingsPageComponent extends Block<IUserSettingsPage> {
     inputComponents: InputWithMessage[];
     form: Form;
 
-    constructor(props: IComponentProps) {
-        super(props);
-    }
+    protected async init(): Promise<void> {
 
-    protected init(): void {
-        this.inputComponents = _inputComponents.map(props => {
-            const formInput = new FormInput({
-                ...props,
-                events: {
-                    blur: this.formValidation.bind(this)
-                }
-            });
-            const inputWithMessage = new InputWithMessage({
-                input: formInput
-            })
-            return inputWithMessage;
+        authController.getUser();  
+
+        this.children.logoutButton = new ActionButton({
+            buttonName: '<div class="icon-signout"></div>',
+            buttonType: 'button',
+            classNames: ["icon-transparent"],
+            events: {
+                click: () => { authController.logout() }
+            }
         });
 
-        this.form = new Form({
-            buttons: _submitButtonProps.map(props => {
-                return new ActionButton(props)
-            }),
-            url: "",
-            inputComponents: this.inputComponents,
-        })
-        
-        this.children.avatar = new AvatarButton({});
+        const withIsEditPasswordModal = connect((state) => ({isActive: state.isChangePasswordModalActive}));
+        const EditPasswordActiveModal = withIsEditPasswordModal(Modal);
+        this.children.modal = new EditPasswordActiveModal({
+            header: "Изменить пароль",
+            isActive: false,
+            content: new ChangePasswordModal({}),
+            cancelClick: () => {
+                userController.changePasswordModal(false);
+            }
+        });
+    }
 
-        this.children.form = this.form
+    getUserSetting(setting: string) {
+        switch (setting) {
+            case "first_name":
+                return this.props.user?.first_name;
+            case "second_name":
+                return this.props.user?.second_name;
+            case "email":
+                return this.props.user?.email;
+            case "login":
+                return this.props.user?.login;
+            case "phone":
+                return this.props.user?.phone;
+            case "display_name":
+                return this.props.user?.display_name;
+            default:
+                break;
+        }
     }
 
     formValidation() {
@@ -121,7 +128,93 @@ export class UserSettingsPage extends Block<IComponentProps> {
         });
     }
 
+    protected componentDidUpdate(oldProps: IUserSettingsPage, newProps: IUserSettingsPage): boolean {
+        this.setInputs();
+
+        this.children.avatar = new AvatarButton({
+            src: this.props.user?.avatar ? this.props.user.avatar : "",
+            isEditMode: true
+        });
+
+        this.form = new Form({
+            buttons: [ new ActionButton({
+                buttonName: "Изменить пароль",
+                buttonType: "button",
+                classNames: ["change-password-button"],
+                events: {
+                    click: () => {
+                        userController.changePasswordModal(true);
+                    }
+                }
+            }), new ActionButton({
+                buttonName: "Применить настройки",
+                buttonType: "submit",
+                classNames: ["submit-button"]
+            }),
+            new ActionButton({
+                buttonName: "Отменить",
+                classNames: ["cancel-button"],
+                buttonType: "button",
+                events: {
+                    click: () => {
+                        Router.back();
+                    }
+                }
+            })],
+            url: "/user/profile",
+            inputComponents: this.inputComponents,
+            submit: () => {
+                const data = this.form.getFormInputValues();
+                const request = {
+                    login: data.find(x => x.name === "login")?.value,
+                    email: data.find(x => x.name === "email")?.value,
+                    first_name: data.find(x => x.name === "first_name")?.value,
+                    second_name: data.find(x => x.name === "second_name")?.value,
+                    phone: data.find(x => x.name === "phone")?.value,
+                    display_name: data.find(x => x.name === "display_name")?.value
+                } as IUserSettings;
+                userController.changeUserSettings(request);
+            }
+        });
+
+        this.children.form = this.form;
+
+        return true;
+    }
+
+    setInputs() {
+        this.inputComponents = _inputComponents.map(props => {
+            const formInput = new FormInput({
+                ...props,
+                value: this.getUserSetting(props.name ?? ""),
+                events: {
+                    blur: this.formValidation.bind(this)
+                }
+            });
+            const inputWithMessage = new InputWithMessage({
+                input: formInput
+            })
+            return inputWithMessage;
+        });
+    }
+
     protected render(): DocumentFragment {
         return (this.compile(template, {...this.props}));
     }
 }
+
+const withUser = connect(state => {
+    const currentUser = state.currentUser;
+  
+    if (!currentUser) {
+        return {
+            user: undefined
+        };
+    }
+  
+    return {
+        user: currentUser
+    };
+});
+
+export const UserSettingsPage = withUser(UserSettingsPageComponent);

@@ -3,11 +3,12 @@ import template from "./MessagePreview.hbs";
 import "./MessagePreview.scss";
 
 export interface IMessagePreview extends IComponentProps{
+    id: number,
     contactUserName: string,
     contactUserChatName: string,
     contactUserChatMessage: string,
     contactUserChatTime: string,
-    contactUserUnreadMessageCount: number
+    contactUserUnreadMessageCount: number,
 }
 export class MessagePreview extends Block<IMessagePreview> {
     constructor(props: IMessagePreview) {

@@ -1,0 +1,35 @@
+.found-users {
+    background: #e8f1f1;
+    border-radius: 5px;
+    display: flex;
+    margin: 0;
+    padding-left: 5px;
+    font-size: 10px;
+    line-height: 1.5em;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.chat-settings-add-user-block {
+    display: flex;
+}
+
+.remove-user-from-chat-button {
+    .icon-close {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+.chat-settings-current-user-block {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.search-user-item {
+    cursor: pointer;
+}
+
+.chat-settings-users {
+    margin-top: 10px;
+}

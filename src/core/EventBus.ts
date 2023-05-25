@@ -30,6 +30,6 @@ export class EventBus {
             throw new Error(`Нет события: ${event}`);
         }
         const callbacks = this._listeners[event];
-        callbacks.forEach(listener => listener(args));
+        callbacks.forEach(listener => listener(...args));
     }
 }
