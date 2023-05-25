@@ -40,7 +40,7 @@ class MessageContainerComponent extends Block<IMessageContainer> {
             events: {
                 keydown: (ev: KeyboardEvent) => {
                     if (ev.key === "Enter") {
-                        if (isValidFormInput(this.typeInput.getInputName() || "", this.typeInput.getInputValue())) {
+                        if (isValidFormInput(this.typeInput.getInputName() || "", this.typeInput.getInputValue()).valid) {
                             this.sendNewMessage();
                         } 
                     }

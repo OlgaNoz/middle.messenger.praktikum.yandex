@@ -15,7 +15,7 @@ const userController = new UserController();
 
 export class AvatarButton extends Block<IAvatarProps> {
     protected init(): void {
-        const src = this.props.src !== undefined ? "https://ya-praktikum.tech/api/v2/resources/" + this.props.src : ""
+        const src = this.props.src !== undefined && this.props.src !== "" ? "https://ya-praktikum.tech/api/v2/resources/" + this.props.src : ""
         this.setProps({
             defaultAvatar: defaultAvatar,
             src: src
