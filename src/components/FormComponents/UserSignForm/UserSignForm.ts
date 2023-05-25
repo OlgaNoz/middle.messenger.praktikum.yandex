@@ -7,7 +7,6 @@ import { Form } from "../Form/Form";
 import { Link, LINKS_LOCATIONS } from "../../Link/Link";
 import { isValidFormInput } from "../../../common/scripts/FormValidation";
 import { InputWithMessage } from "../InputWithMessage/InputWithMessage";
-import Router from "../../../core/Router";
 
 export interface IUserSignFormProps extends IComponentProps {
     formName: string,

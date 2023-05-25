@@ -35,13 +35,13 @@ export default class WebSockets extends EventBus {
 
         this.addEvents();
 
-        let interval = setInterval(() => {
+        const interval = setInterval(() => {
             this.send({ type: 'ping' });
-          }, 5000)
+        }, 5000)
       
-          this.on(WSEvents.Close, () => {
+        this.on(WSEvents.Close, () => {
             clearInterval(interval);
-          })
+        });
 
         return new Promise((resolve) => {
             this.on(WSEvents.Connected, () => {
