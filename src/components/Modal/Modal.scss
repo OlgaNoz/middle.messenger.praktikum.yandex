@@ -1,0 +1,38 @@
+.modal {
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    max-width: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 30; 
+    box-shadow: 0 3px 10px -0.5px rgba(0 0 0 / 20%); 
+    text-align: center;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #fff;
+    transition: 0.3s all;
+
+    &.active {
+        opacity: 1;
+        visibility: visible; 
+    }
+
+    .form-input {
+        box-sizing: border-box;
+        width: 100%;
+        background: #e8f1f1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-content {
+    margin-top: 5px;
+}

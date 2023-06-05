@@ -1,6 +1,5 @@
 import { EventBus } from './EventBus';
 import {v4 as makeUUID} from 'uuid';
-
 export interface IComponentProps extends Record<string, any> {
   classNames?: string[];
 }

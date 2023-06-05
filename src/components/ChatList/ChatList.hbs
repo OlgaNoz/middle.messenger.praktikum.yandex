@@ -1,15 +1,17 @@
 <div class="chat-list">
     <div class="user-block">
         {{{userSettingsButton}}}
+        {{{logoutButton}}}
         {{{searchChatInput}}}
         {{#if inputNotNull}}
         {{{clearSearchInputButton}}}
         {{/if}}
     </div>
     <div class="contact-users-preview-messages">
-        {{#each messagesPreview}}
+        {{#each chatsPreview}}
             {{{this}}}
         {{/each}}
     </div>
     {{{addChatButton}}}
+    {{{modal}}}
 </div>

@@ -6,6 +6,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    justify-content: space-between;
 
     &:hover,
     &:focus {
@@ -49,6 +50,16 @@
     margin-left: auto;
 }
 
+.contact-user-chat-short-info {
+    display: flex;
+    align-items: center;
+    max-width: 80%;
+}
+
 .contact-user-message-info {
     max-width: 75%;
+}
+
+.contact-user-other-info {
+    margin-right: 5px;
 }

@@ -24,8 +24,10 @@ export const isValidFormInput = (name: string, value: string) => {
             errorText = 'От 10 до 15 символов, состоит из цифр, может начинается с плюса';
             break;
         case "message":
+        case "display_name":
             regStr = '^\.';
-            break;          
+            errorText = 'Не должно быть пустым';
+            break;   
         default:
             break;
     }

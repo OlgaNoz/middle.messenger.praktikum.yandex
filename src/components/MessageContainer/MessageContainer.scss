@@ -4,7 +4,7 @@
 }
 
 .message-container-field {
-    height: calc(100vh - 90px);
+    height: calc(100vh - 60px);
     overflow-y: auto;
 }
 
@@ -25,4 +25,18 @@
     .user-search-field {
         width: 80%;
     }
+}
+
+.chat-settings-modal {
+    .modal-header {
+        justify-content: center;
+    }
+}
+
+.message-container-field::-webkit-scrollbar {
+    width: 6px;
+}
+
+.message-container-field::-webkit-scrollbar-thumb {
+    background-color: #3c8b8f;
 }

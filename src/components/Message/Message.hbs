@@ -1,5 +1,6 @@
-<div 
-    {{#if isOutgoing}}
+    {{!-- <div class="message-block">
+    {{{avatar}}}
+<div {{#if isOutgoing}}
     class="current-user-message"
     {{else}}
     class="contact-user-message"
@@ -7,3 +8,24 @@
     {{contactUserChatMessage}}
     <span class="message-user-time">{{contactUserChatTime}}</span>
 </div>
+    </div> --}}
+
+
+    {{#if isOutgoing}}
+    <div class="message-block current">
+        <div class="current-user-message">
+            {{contactUserChatMessage}}
+                <span class="message-user-time">{{contactUserChatTime}}</span>
+        </div>
+    </div>
+    {{else}}
+    <div class="message-block contact">
+        {{{avatar}}}
+        <div class="contact-user-message">
+            {{contactUserChatMessage}}
+                <span class="message-user-time">{{contactUserChatTime}}</span>
+        </div>
+    </div>
+    {{/if}}
+
+
