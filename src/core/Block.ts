@@ -103,13 +103,13 @@ export class Block<P extends IComponentProps> {
         });
     }
 
-    private _componentDidUpdate(oldProps: P, newProps: P) {
-        if (this.componentDidUpdate(oldProps, newProps)) {
+    private _componentDidUpdate(_oldProps: P, _newProps: P) {
+        if (this.componentDidUpdate(_oldProps, _newProps)) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
 
-    protected componentDidUpdate(oldProps: P, newProps: P) {
+    protected componentDidUpdate(_oldProps: P, _newProps: P) {
         return true;
     }
 

@@ -21,6 +21,7 @@ class Store extends EventBus {
 
 const store = new Store();
 
+
 export function connect<SP>(mapStateToProps: (state: Indexed) => SP) {
     return function<P extends IComponentProps>(Component: typeof Block<P>){
         return class extends Component {
@@ -33,7 +34,7 @@ export function connect<SP>(mapStateToProps: (state: Indexed) => SP) {
                     const newState = mapStateToProps(store.getState());
 
                     oldState = newState;
-
+                    //@ts-ignore
                     this.setProps({...newState});
                 });
             }
