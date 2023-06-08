@@ -10,6 +10,17 @@ describe('Test router', () => {
         }
     }
 
+    global.window.history.back = () => {
+      if (typeof window.onpopstate === 'function') {
+        window.onpopstate({currentTarget: window} as unknown as PopStateEvent);
+      }
+    };
+    global.window.history.forward = () => {
+      if (typeof window.onpopstate === 'function') {
+        window.onpopstate({currentTarget: window} as unknown as PopStateEvent);
+      }
+    }
+
     // class ComponentPage2 extends Block<IComponentProps>{
     //     protected render(): DocumentFragment {
     //         const component = new DocumentFragment();
