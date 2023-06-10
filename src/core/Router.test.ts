@@ -1,41 +1,44 @@
 import { expect } from "chai";
 import Router from "./Router";
 import { Block, IComponentProps } from "./Block";
-import { JSDOM } from 'jsdom';
 
 describe('Test Router', () => {
-    const DOM = new JSDOM('<html><head></head><body><div id="root"></div></body></html>', {
-      url: 'http://localhost'
-    });
-    
-    //@ts-ignore
-    global.window = DOM.window;
-    //@ts-ignore
-    global.document = DOM.window.document;
-    //@ts-ignore
-    global.window.history = DOM.window.document;
     class ComponentPage1 extends Block<IComponentProps>{
-        protected render(): DocumentFragment {
-            const component = new DocumentFragment();
-            return component;
-        }
+      protected render(): DocumentFragment {
+          const component = new window.DocumentFragment();
+          return component;
+      }
     }
-
     class ComponentPage2 extends Block<IComponentProps>{
         protected render(): DocumentFragment {
-            const component = new DocumentFragment();
+            const component = new window.DocumentFragment();
             return component;
         }
     }
 
-  
-    it('back()', () => {
-      Router.use('/first', ComponentPage1)
-            .use('/second', ComponentPage2)
-            .start();
-            
-      Router.go('/second');
-      let route = Router._currentRoute?._pathname;
-      expect(route).to.eq("/second");
+    before(() => {
+        Router.use('/first', ComponentPage1)
+        .use('/second', ComponentPage2)
+        .start();
     });
-  });
+  
+    it('go() with correct path', () => {
+        Router.go('/first');
+        expect(Router._currentRoute?._pathname).to.eq("/first");
+    });
+
+    it('go() with incorrect path (should stay on current page)', () => {
+        Router.go('/test');
+        expect(Router._currentRoute?._pathname).to.eq("/first");
+    });
+
+    it('getRoute() with correct path', () => {
+        const route = Router.getRoute('/second');
+        expect(route?._pathname).to.eq("/second");
+    });
+
+    it('getRoute() with incorrect path', () => {
+      const route = Router.getRoute('/test');
+      expect(route?._pathname).to.undefined;
+    });
+});

@@ -7,7 +7,7 @@ export interface Options {
     method?: string;
 }
 
-const METHODS = {
+export const METHODS = {
     GET: 'GET',
     POST: 'POST',
     PUT: 'PUT',
