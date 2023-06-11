@@ -4,10 +4,10 @@ import { Block, IComponentProps } from "./Block";
 
 describe('Test Router', () => {
     class ComponentPage1 extends Block<IComponentProps>{
-      protected render(): DocumentFragment {
-          const component = new window.DocumentFragment();
-          return component;
-      }
+        protected render(): DocumentFragment {
+            const component = new window.DocumentFragment();
+            return component;
+        }
     }
     class ComponentPage2 extends Block<IComponentProps>{
         protected render(): DocumentFragment {
@@ -18,8 +18,8 @@ describe('Test Router', () => {
 
     before(() => {
         Router.use('/first', ComponentPage1)
-        .use('/second', ComponentPage2)
-        .start();
+            .use('/second', ComponentPage2)
+            .start();
     });
   
     it('go() with correct path', () => {
@@ -38,7 +38,7 @@ describe('Test Router', () => {
     });
 
     it('getRoute() with incorrect path', () => {
-      const route = Router.getRoute('/test');
-      expect(route?._pathname).to.undefined;
+        const route = Router.getRoute('/test');
+        expect(route?._pathname).to.undefined;
     });
 });
