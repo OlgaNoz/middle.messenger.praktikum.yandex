@@ -6,7 +6,12 @@
 #### Build commands
 <p>npm run start - start local server on http://localhost:3000</p>
 <p>npm run build - build project to ./dist</p>
-<p>npm run dev - build project in watch mode</p>
+<p>npm run build:dev - build project in watch mode</p>
+
+#### Test commands
+<p>npm run lint - start eslint check</p>
+<p>npm run slint - start slint check</p>
+<p>npm run test - start unit tests</p>
 
 Это учебный проект "Мессенджер".
 На текущий момент проект сделан в виде SPA с навигацией по ключевым страницам с помощью меню
