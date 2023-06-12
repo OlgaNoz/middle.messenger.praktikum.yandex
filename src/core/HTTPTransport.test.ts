@@ -2,6 +2,11 @@ import { expect } from "chai";
 import { HTTPTransport, METHODS, Options } from "./HTTPTransport";
 import sinon, { SinonFakeXMLHttpRequest, SinonFakeXMLHttpRequestStatic } from 'sinon';
 
+
+interface ITestValue {
+    testValue: number;
+}
+
 describe('Test HTTPTransport', () => {
     const httpTransport = new HTTPTransport('/auth');
     let xhr: SinonFakeXMLHttpRequestStatic;
@@ -31,7 +36,7 @@ describe('Test HTTPTransport', () => {
     });
 
     it('POST request was sent', () => {
-        const body = { testValue: 1 };
+        const body = { testValue: 1 } as ITestValue;
         const options = {
             data: body
         } as Options;
