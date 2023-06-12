@@ -2,7 +2,6 @@ import { ChatAPI } from "../API/ChatApi";
 import { prettyDateFormat } from "../common/scripts/Utils";
 import { IChatUser } from "../components/ChatSettingsModal/ChatSettingsContent";
 import { IMessagePreview } from "../components/MessagePreview/MessagePreview";
-import Router from "../core/Router";
 import Store from "../core/Store";
 import { IUserInfo } from "./AuthController";
 import { MessagesController } from "./MessagesController";
@@ -63,7 +62,7 @@ export class ChatController {
     }
 
     public getChatUserInfo(chatId: number, userId: number) {
-        this.getChatUsers(chatId).then((result) => {
+        this.getChatUsers(chatId).then(() => {
             return (Store.getState().chatUsers as IChatUser[]).find(x => x.id === userId);
         })
     }

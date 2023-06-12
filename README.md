@@ -13,6 +13,11 @@
 <p>npm run slint - start slint check</p>
 <p>npm run test - start unit tests</p>
 
+#### Test commands
+<p>npm run lint - start eslint check</p>
+<p>npm run slint - start slint check</p>
+<p>npm run test - start unit tests</p>
+
 Это учебный проект "Мессенджер".
 На текущий момент проект сделан в виде SPA с навигацией по ключевым страницам с помощью меню
 #### Компоненты

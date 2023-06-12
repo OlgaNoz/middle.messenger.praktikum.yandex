@@ -6,9 +6,9 @@ import { Form } from "../../components/FormComponents/Form/Form";
 import { FormInput, IFormInputProps } from "../../components/FormComponents/FormInput/FormInput";
 import { InputWithMessage } from "../../components/FormComponents/InputWithMessage/InputWithMessage";
 import { Modal } from "../../components/Modal/Modal";
-import { AuthController, IUserInfo } from "../../controllers/AuthController";
+import { AuthController } from "../../controllers/AuthController";
 import { IUserSettings, UserController } from "../../controllers/UserController";
-import { Block } from "../../core/Block";
+import { Block, IComponentProps } from "../../core/Block";
 import Router from "../../core/Router";
 import { connect } from "../../core/Store";
 import template from "./UserSettingsPage.hbs";
@@ -60,14 +60,14 @@ const _inputComponents = [
 ] as IFormInputProps[];
 
 
-export interface IUserSettingsPage {
-    user?: IUserInfo;
-}
+// export interface IUserSettingsPage {
+//     user?: IUserInfo;
+// }
 
 const authController = new AuthController();
 const userController = new UserController();
 
-class UserSettingsPageComponent extends Block<IUserSettingsPage> {
+class UserSettingsPageComponent extends Block<IComponentProps> {
     inputComponents: InputWithMessage[];
     form: Form;
 
@@ -128,7 +128,7 @@ class UserSettingsPageComponent extends Block<IUserSettingsPage> {
         });
     }
 
-    protected componentDidUpdate(oldProps: IUserSettingsPage, newProps: IUserSettingsPage): boolean {
+    protected componentDidUpdate(_oldProps: IComponentProps, _newProps: IComponentProps): boolean {
         this.setInputs();
 
         this.children.avatar = new AvatarButton({
