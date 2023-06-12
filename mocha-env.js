@@ -8,3 +8,4 @@ global.window = DOM.window;
 global.document = DOM.window.document;
 global.history = DOM.window.History;
 global.XMLHttpRequest = DOM.window.XMLHttpRequest;
+global.FormData = DOM.window.FormData;
