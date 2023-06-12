@@ -31,7 +31,7 @@ describe('Test HTTPTransport', () => {
     });
 
     it('POST request was sent', () => {
-        const body = { testValue: 1 }
+        const body = { testValue: 1 };
         const options = {
             data: body
         } as Options;
