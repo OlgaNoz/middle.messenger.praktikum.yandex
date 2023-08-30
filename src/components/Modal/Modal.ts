@@ -3,7 +3,7 @@ import { ActionButton } from "../ActionButton/ActionButton";
 import template from "./Modal.hbs";
 import "./Modal.scss";
 
-export interface BlockComponent<P extends IComponentProps> {
+export interface BlockComponent<_P extends IComponentProps> {
   }
 
 export interface IModalProps extends IComponentProps {

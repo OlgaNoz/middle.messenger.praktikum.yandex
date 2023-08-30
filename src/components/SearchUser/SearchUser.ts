@@ -1,4 +1,4 @@
-import { Block, IComponentProps } from "../../core/Block";
+import { Block } from "../../core/Block";
 import { IChatUserProps } from "../ChatUser/ChatUser";
 import template from "./SearchUser.hbs"
 

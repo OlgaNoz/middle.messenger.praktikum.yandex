@@ -1,7 +1,6 @@
 import { ChatsListComponent } from "../../components/ChatList/ChatList";
 import { MessageContainer } from "../../components/MessageContainer/MessageContainer";
 import { Block, IComponentProps } from "../../core/Block";
-import { connect } from "../../core/Store";
 import chat from "./Chat.hbs";
 import "./Chat.scss"
 

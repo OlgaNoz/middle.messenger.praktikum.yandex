@@ -26,26 +26,3 @@ body {
 ul {
     list-style-type: none;
 }
-
-.menu-list {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: rgba(60 139 143 / 66%);
-}
-
-.menu-list-element {
-    float: left;
-}
-
-.menu-list-element a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
-}
-
-.menu-list-element a:hover {
-    background-color: rgba(60 139 143 / 90%);;
-}

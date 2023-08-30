@@ -75,10 +75,10 @@ class ChatSettingsContentComponent extends Block<IChatSettingsModalContentProps>
         }
     }
 
-    protected componentDidUpdate(oldProps: IChatSettingsModalContentProps, newProps: IChatSettingsModalContentProps): boolean {
-        this.children.chatUsers = this.createChatUsersComponent(newProps.chatUsers);
+    protected componentDidUpdate(_oldProps: IChatSettingsModalContentProps, _newProps: IChatSettingsModalContentProps): boolean {
+        this.children.chatUsers = this.createChatUsersComponent(_newProps.chatUsers);
 
-        this.children.foundUsers = this.createSearchUsersComponent(newProps.foundUsers);
+        this.children.foundUsers = this.createSearchUsersComponent(_newProps.foundUsers);
 
         return true;
     }

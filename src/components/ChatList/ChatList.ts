@@ -101,8 +101,8 @@ class ChatList extends Block<IChatListProps> {
         });
     }
 
-    protected componentDidUpdate(oldProps: IChatListProps, newProps: IChatListProps): boolean {
-        this.children.chatsPreview = newProps.chats.map((chat) => {
+    protected componentDidUpdate(_oldProps: IChatListProps, _newProps: IChatListProps): boolean {
+        this.children.chatsPreview = _newProps.chats.map((chat) => {
             const newChatProps = {
                 ...chat,
                 events: {

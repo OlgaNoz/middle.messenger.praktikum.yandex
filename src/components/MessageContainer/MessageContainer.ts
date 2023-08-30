@@ -96,10 +96,10 @@ class MessageContainerComponent extends Block<IMessageContainer> {
         
     }
 
-    protected componentDidUpdate(oldProps: IMessageContainer, newProps: IMessageContainer): boolean {    
-        if (newProps.messages) {
+    protected componentDidUpdate(_oldProps: IMessageContainer, _newProps: IMessageContainer): boolean {    
+        if (_newProps.messages) {
             const chatUsers = store.getState().chatUsers as IChatUser[];
-            this.children.chatMessages = newProps.messages.map((message) => {
+            this.children.chatMessages = _newProps.messages.map((message) => {
                 const currentUser = store.getState().currentUser as IUserInfo;
                 const newChatProps = {
                     contactUserChatMessage: message.content,
